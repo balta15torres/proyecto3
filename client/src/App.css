@@ -21,7 +21,7 @@ p{
 .title{
   font-weight: bold;
     font-size: 25px;
-    text-align: left;
+    text-align: center;
     position: relative;
 }
 .title:before{
@@ -200,4 +200,18 @@ input[name="password"]{
   width: 100%;
   position: relative;
   margin-bottom: 200px;
+}
+
+/* PROFILE */
+.image-profile{
+  height: 150px;
+  width: 100%;
+  margin-bottom: 25px;
+}
+.image-profile img{
+  max-height: 100%;
+    max-width: 100%;
+}
+.description-profile p{
+  margin:20px 0;
 }

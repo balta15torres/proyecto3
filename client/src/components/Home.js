@@ -11,7 +11,7 @@ export default class Home extends Component {
       <div className="container -home">
        <NavBottom/>
        <NavTop/>
-       <div class="mapa">
+       <div className="mapa">
        <GoogleApiWrapper />
        </div>
       

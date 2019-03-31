@@ -48,14 +48,14 @@ export default class Signup extends Component {
 
   render() {
     return (
-      <div class="container column-center">
+      <div className="container column-center">
       {/* <p>
          ¿Estas registrado? 
          <Link to='/login' className="nav-element">
          Conectate</Link>
       </p> */}
-      <p class="title">REGISTRATE</p>
-      <div class="signup">
+      <p className="title">REGISTRATE</p>
+      <div className="signup">
       <Form  onSubmit={this.handleFormSubmit}>
          <Form.Group controlId="formBasicEmail">
             

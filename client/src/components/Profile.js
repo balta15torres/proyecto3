@@ -44,24 +44,25 @@ export default class Profile extends Component {
 
 render() {
     return (
-        <div>
-        <Card style={{ width: '20rem' }}>
-       
-            <ListGroup className="list-group-flush" style={{color : "black"}}>
-            <ListGroupItem>
-         
-                <img className="card-img-top" src={this.state.imageUrl} alt={this.state.imageUrl} />
-            </ListGroupItem>
-            <ListGroupItem>{this.state.username}</ListGroupItem>
-            <ListGroupItem>{this.state.email}</ListGroupItem>
-            </ListGroup>
-        <Card.Body>
-            <Link to="/">edit perfil</Link>
-            
-        </Card.Body>
-        </Card>
-        <NavBottom/>
-        </div>
+       <div className="container column-center">
+           <div className="image-profile">
+           <img src="/img/img-prueba.jpg"/>
+            {/* <img className="card-img-top" src={this.state.imageUrl} alt={this.state.imageUrl} /> */}
+           </div>
+           <div className="description-profile">
+               <div className="userName">
+                   <p className="title">User name</p>
+                   <p>{this.state.username}</p>
+               </div>
+               <div className="email">
+                   <p className="title">Email</p>
+                   <p>{this.state.email}</p>
+               </div>
+           </div>
+           <NavBottom/>
+       </div>
+
+        
        
        
        )
