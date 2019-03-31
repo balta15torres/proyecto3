@@ -8,10 +8,13 @@ import GoogleApiWrapper from '../lib/GoogleApi'
 export default class Home extends Component {
   render() {
     return (
-      <div>
+      <div className="container -home">
        <NavBottom/>
        <NavTop/>
-      <GoogleApiWrapper />
+       <div class="mapa">
+       <GoogleApiWrapper />
+       </div>
+      
 
        
       </div>

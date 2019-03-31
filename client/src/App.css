@@ -187,3 +187,17 @@ input[name="password"]{
     background-size: 22px;
     padding-left: 40px;
 }
+
+/* HOME */
+.container.-home{
+  padding: 15px 0;
+}
+.mapa{
+  width: 100%;
+}
+.map {
+  height: 25rem;
+  width: 100%;
+  position: relative;
+  margin-bottom: 200px;
+}
