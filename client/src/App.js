@@ -5,9 +5,12 @@ import Signup from './components/Signup'
 import Login from './components/Login'
 import Home from "./components/Home"
 import Profile from "./components/Profile"
-import CreatEvent from './components/CreatEvent';
-import ListEvents from './components/ListEvents';
+import CreatEvent from './components/CreatEvent'
+import EventList from './components/EventList'
+import EventDetails from './components/EventDetails'
+import EventCard from './components/EventCard'
 import { Link } from 'react-router-dom'
+
 
 class App extends Component {
   constructor(props){
@@ -33,13 +36,14 @@ class App extends Component {
           
           <Switch>
             
-            <Route exact path='/signup'     render={() => <Signup     setUser={this.setTheUser}/>}/>
-            <Route exact path='/login'      render={() => <Login      setUser={this.setTheUser}/>}/>
-            <Route exact path='/home'       render={() => <Home       setUser={this.setTheUser}/>}/>
-            <Route exact path='/profile'    render={() => <Profile    setUser={this.setTheUser}/>}/>
-            <Route exact path='/creatEvent' render={() => <CreatEvent setUser={this.setTheUser}/>}/>
-            <Route exact path='/listEvents' render={() => <ListEvents  setUser={this.setTheUser}/>}/>
-            
+            <Route exact path='/signup'       render={() => <Signup       setUser={this.setTheUser}/>}/>
+            <Route exact path='/login'        render={() => <Login        setUser={this.setTheUser}/>}/>
+            <Route exact path='/home'         render={() => <Home         setUser={this.setTheUser}/>}/>
+            <Route exact path='/profile'      render={() => <Profile      setUser={this.setTheUser}/>}/>
+            <Route exact path='/creatEvent'   render={() => <CreatEvent   setUser={this.setTheUser}/>}/>
+            <Route exact path='/eventList'    render={() => <EventList    setUser={this.setTheUser}/>}/>
+            <Route path='/eventDetails/:id' exact component={EventDetails}/>
+            <Route exact path='/eventCard'    render={() => <EventCard    setUser={this.setTheUser}/>}/>
 
           </Switch>
         </header>

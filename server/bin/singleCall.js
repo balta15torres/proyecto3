@@ -7,6 +7,7 @@ mongoose
 .connect('mongodb://localhost/server', {centroNewUrlParser: true})
 .then(x => {
   console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
+  return Centro.deleteMany()
 })
 .catch(err => {
   console.error('Error connecting to mongo', err)

@@ -1,5 +1,6 @@
 .navTop {
-    position: fixed;
+    position: absolute;
+    height: 50px;
     bottom: 0;
     left: 0;
     right: 0;

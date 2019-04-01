@@ -14,7 +14,7 @@ export default class NavBottom extends Component {
         
           <Link to="/home">Home</Link>
         
-          <Link to="/listEvents">Tus eventos</Link>
+          <Link to="/EventList">Tus eventos</Link>
         
           <Link to="/creatEvent">Crear eventos</Link>
         

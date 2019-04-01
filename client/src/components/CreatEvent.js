@@ -1,118 +1,121 @@
 import React, { Component } from 'react'
-// import Modal from 'react-modal'
+
 import AuthService from '../service/authService'
 import NavBottom from './NavBottom/NavBottom'
 import NavTop from './NavTop/NavTop'
+import Button from 'react-bootstrap/Button'
 
 export default class CreatEvent extends Component {
-  constructor(props) {
-      super(props)
-      this.state = {
-        event:{
-            location:'',
-            data:'',
-            hour:'',
-            participants:''
-    }
-}
-//console.log(this.state)
+    constructor(props) {
+        super(props)
+        this.state = {
+            event: {
+                location: '',
+                data: '',
+                hour: '',
+                participants: ''
+            }
+        }
+        //console.log(this.state)
         this.service = new AuthService()
-        this.getEvent()
- }
-
- 
- handleSubmit = e => {
-     e.preventDefault()
-     const location = this.state.location
-     const data = this.state.data
-     const hour = this.state.hour
-     const participants = this.state.participants
-     
-     this.service.getDataEvent(location, data, hour,participants)
-     .then(res => {
-         this.setState({
-             event:{
-                location:'',
-                  data:'',
-                  hour:'',
-                  participants:''
-                }
-            })
-            console.log(this.setState)
-            //this.service = new Event()
-            this.props.setUser(res.data)
-        })
-        .catch(err => err)
+        // this.getEvent()
     }
-    
+
+
+    handleSubmit = e => {
+        e.preventDefault()
+        const location = this.state.location
+        const data = this.state.data
+        const hour = this.state.hour
+        const participants = this.state.participants
+
+        this.service.getDataEvent(location, data, hour, participants)
+            .then(res => {
+                this.setState({
+                    event: {
+                        location: '',
+                        data: '',
+                        hour: '',
+                        participants: ''
+                    }
+                })
+                console.log(this.setState)
+                //this.service = new Event()
+                this.props.setUser(res.data)
+                window.location.assign('EventList')
+            })
+            .catch(err => err)
+    }
+
     handleChange = (e) => {
         const { name, value } = e.target
-        
+
         //this.setState({...this.state.event, [name]: value})
-    
+
         this.setState({ [name]: value });
-}
-    
+    }
+
     getEvent = () => {
         this.service.getDataEvent()
-        .then(res =>{
-            const {location, data, hour, participants} = res
-   
-            this.setState({
-                location: location, 
-                data:data, 
-                hour:hour, 
-                participants:participants})
-   
-            this.props.setUser(res.data)
-   
-        })
-        .catch (err => err)
-    }
-    
-    render() {
-        return (
-      <div className="container column-center">
-          {/* <button onClick={this.openModal} className="btn newCoaster btn-primary">Nuevo evento</button> */}
-            {/* <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} style={customStyles}>  */}
-            <NavBottom/>
-       <NavTop/>
-                    <h2 className="title">NUEVO EVENTO</h2>
-                    <form onSubmit={this.handleSubmit}>
+            .then(res => {
+                const { location, data, hour, participants } = res
 
-                        <div className="form-group">
-                
-                            <select type="options" className="form-control" name="distrito" value={this.state.location} onChange={e => this.handleChange(e)}>
+                this.setState({
+                    location: location,
+                    data: data,
+                    hour: hour,
+                    participants: participants
+                })
+
+                this.props.setUser(res.data)
+
+            })
+            .catch(err => err)
+    }
+
+    render() {
+        
+        return (
+            
+            <div className="container column-center">
+                <div>
+                <NavBottom />
+                <NavTop />
+                </div>
+                <h2 className="title">NUEVO EVENTO</h2>
+                <form onSubmit={this.handleSubmit}>
+
+                    <div className="form-group">
+
+                        <select type="options" className="form-control" name="location" value={this.state.location} onChange={e => this.handleChange(e)}>
                             {/* poner en las options los distritos de la api C.Madrid */}
                             <option>¿Distrito?</option>
-                            </select>
-                        </div>
+                            <option>¿Distrito?</option>
 
-                        <div className="form-group">
-                            
-                            <input type="date" className="form-control" name="data" placeholder="Fecha" value={this.state.data} onChange={e => this.handleChange(e)} />
-                        </div>
+                        </select>
+                    </div>
 
-                        <div className="form-group">
-                            
-                            <input type="time" className="form-control" name="hour" placeholder="Hora" value={this.state.hour} onChange={e => this.handleChange(e)}  />
-                        </div>
+                    <div className="form-group">
 
-                        <div className="form-group">
-                            <input type="number" className="form-control" placeholder="Numero de participantes" name="participants" value={this.state.participants} onChange={e => this.handleChange(e)}  />
-                        </div>
+                        <input type="date" className="form-control" name="data" placeholder="Fecha" value={this.state.data} onChange={e => this.handleChange(e)} />
+                    </div>
 
-                        {/* <div className="form-group">
-                            <label>Imagen</label>
-                            <input type="file" className="form-control"  />
-                        </div> */}
+                    <div className="form-group">
 
-                        <button type="submit" className="btn btn-primary">Crear</button>
+                        <input type="time" className="form-control" name="hour" placeholder="Hora" value={this.state.hour} onChange={e => this.handleChange(e)} />
+                    </div>
 
-                    </form>
+                    <div className="form-group">
+                        <input type="number" className="form-control" name="participants" placeholder="Numero de participantes" value={this.state.participants} onChange={e => this.handleChange(e)} />
+                    </div>
 
-                {/* </Modal> */}
-    </div>
-    )
-  }
+                    <Button variant="primary" type="submit">Submit</Button>
+
+                </form>
+                
+
+
+            </div>
+        )
+    }
 }

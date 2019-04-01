@@ -12,7 +12,15 @@ export default class authService {
     
     
     signup = (username, email,password,imageUrl) => {
-        return this.service.post('signup', { username, email,password ,imageUrl})
+        console.log(imageUrl)
+        const uploadData = new FormData();
+        uploadData.append("photo", imageUrl[0]);
+        uploadData.append("username", username);
+        uploadData.append("email", email);
+        uploadData.append("password", password);
+
+        console.log(uploadData)
+        return this.service.post('signup', uploadData)
             .then(res => res.data)
     }
 
@@ -31,8 +39,8 @@ export default class authService {
             .then(res => res.data)
     }
    
-    getDataProfile = (imageUrl,username,email) => {
-        return this.service.get('getDataUser',{imageUrl,username,email})
+    getDataProfile = () => {
+        return this.service.get('getDataUser')
             .then(res => {
                 //console.log(res.data)
                 return res.data}
@@ -40,6 +48,7 @@ export default class authService {
     }
 
     getDataEvent = (location,data,hour,participants) => {
+        console.log(location,data,hour,participants)
         
         return this.service.post('getDataE',{location,data,hour,participants})
         .then (res => res.data)
@@ -47,6 +56,33 @@ export default class authService {
             //console.log(res.data)
         
     }
+
+    getEvents = () => {
+
+        const pro = this.service.get('getAllEvents' ,{ withCredentials: true })
+        .then( res => {
+            console.log(res.data)
+            return res.data
+        })
+        .catch(err => { 
+            console.log(err)
+        })
+        return pro
+    } 
+
+    getOneEvent = idEvent=> {
+        const pro = this.service.get(`getOneEvent/${idEvent}`,{ withCredentials: true })
+        .then( res => {
+            return res.data
+        })
+        .catch(err => { 
+            console.log(err)
+        })
+        return pro
+    }
+    
+
+
 
     
 

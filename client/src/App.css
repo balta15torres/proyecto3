@@ -1,7 +1,7 @@
 /* GENERALES */
 body{
   background: #282c34;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 p{
@@ -47,6 +47,21 @@ p{
   justify-content: center;
   flex-direction: column;
 }
+
+.rows-center {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.rows-center > div {
+  flex: 0 0 30%;
+  padding: 2rem;
+  box-sizing: border-box;
+  border: 1px solid red;
+}
+
 /* ---- */
 .App {
   text-align: center;

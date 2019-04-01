@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AuthService from '../service/authService';
+import AuthService from '../service/authService'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { Link } from 'react-router-dom'
@@ -23,9 +23,9 @@ export default class Signup extends Component {
     const username = this.state.username
     const email = this.state.email
     const password = this.state.password
-    const imageUrl = this.state.imageUrl
+    const photo = this.state.photo
 
-    this.service.signup(username, email, password, imageUrl)
+    this.service.signup(username, email, password, photo)
       .then(res => {
         this.setState({
           username: "",
@@ -44,6 +44,12 @@ export default class Signup extends Component {
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
+  }
+  handleChangeIMG = (e) => {
+    const { name, files, value } = e.target;
+    this.setState({ "photo": files, [name]:value }, () => {
+      console.log(this.state)
+    });
   }
 
   render() {
@@ -73,7 +79,7 @@ export default class Signup extends Component {
          </Form.Group>
          <div className="form-group">
            
-            <input className="form-control" type="file" name="imageUrl" placeholder="image" value={this.state.imageUrl} onChange={e => this.handleChange(e)} />
+            <input className="form-control" type="file" name="imageUrl" placeholder="image" value={this.state.imageUrl} onChange={e => this.handleChangeIMG(e)} />
          </div>
          <Button variant="primary" type="submit">Submit</Button>
       </Form></div>

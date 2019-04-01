@@ -3,8 +3,8 @@ const Schema   = mongoose.Schema;
 
 const eventSchema = new Schema({
     location:String,
-    data:Number,
-    hour:Number,
+    data:String,
+    hour:String,
     participants:Number
 }, {
   timestamps: {
