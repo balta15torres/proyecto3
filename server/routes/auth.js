@@ -41,12 +41,12 @@ router.post("/signup", uploadCloud.single('photo'),(req, res, next) => {
   console.log(req.file, req.body)
   const imageUrl = req.file.secure_url
   if (username === "" || password === "") {
-    res.status(400).json({ message: 'Provide username and password' });
+    res.status(400).json({ message: 'Provide username and password' })
     return;
   }
   User.findOne({ username }, "username", (err, user) => {
     if (user !== null) {
-      res.status(400).json({ message: 'Username taken. Choose another one.' });
+      res.status(400).json({ message: 'Username taken. Choose another one.' })
       return;
     }
 

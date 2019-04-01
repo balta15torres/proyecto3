@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const Event = require("../models/Event")
-
+const Centers = require("../models/Centers");
 /* GET home page */
 router.get('/', (req, res, next) => {
   res.render('index');
@@ -39,18 +39,25 @@ router.post('/getDataE',(req,res,next) => {
   })
 })
 
-router.get('/getAllEvents', (req,res,next) => {
-  Event.find()
-  .then(data => res.json(data))
-  .catch(err => console.log(err))
-})
-
 router.get('/getOneEvent/:id', (req,res)=> { Event.findById(req.params.id)
   .then(data => res.json(data))
   .catch(err => console.log(err))
 
 })
 
+router.get('/getAllEvents', (req,res,next) => {
+  Event.find()
+  .then(data => res.json(data))
+  .catch(err => console.log(err))
+})
 
+
+router.get('/getAllCenters', (req, res) => {
+  Centers.find()
+  .then(centers => {
+    console.log(centers)
+    res.json(centers)
+  })
+});
 
 module.exports = router;

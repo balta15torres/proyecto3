@@ -1,13 +1,13 @@
 
 const mongoose = require("mongoose");
-const Centro = require("../models/Centro");
+const Centers = require("../models/Centers");
 const axios = require("axios");
 
 mongoose
-.connect('mongodb://localhost/server', {centroNewUrlParser: true})
+.connect('mongodb://localhost/server', {CenterNewUrlParser: true})
 .then(x => {
   console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
-  return Centro.deleteMany()
+  return Center.deleteMany()
 })
 .catch(err => {
   console.error('Error connecting to mongo', err)
@@ -36,19 +36,36 @@ mongoose
             }))
         }
         Promise.all(axiosArray)
-        .then(centros => {
-            console.log(centros)
-            //aqui//
+        .then(centers => {
+            //console.log("eooooooo")
+            //aqui/// haremos el objetos con las propiedades que queremos que 
+            //tenga para pintarlo despues en el mapa
             
-          
-        
-            Centro.deleteMany()
+            const newCenter = {
+              location: {
+                cordinates:[
+                  longitude,
+                  latitude
+                ]
+                
+              }
+              
+              
+            };
+            
+           
+            
+            Centers.deleteMany()
             .then(() => {
-              return Centro.create(centros)
+                  
+              //dentro de create /newCenter/
+              //Center.create(newCenter)
+              return console.log("eooooooooo")
             })
-            .then(centrosCreated => {
-              console.log(`${centrosCreated.length} users created with the following id:`);
-              console.log(centrosCreated.map(u => u._id));
+            .then(centersCreated => {
+             
+              console.log(`${centersCreated.length} users created with the following id:`);
+              console.log(centersCreated.map(u => u._id));
             })
             .then(() => {
               // Close properly the connection to Mongoose

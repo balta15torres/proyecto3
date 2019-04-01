@@ -23,12 +23,48 @@
 
 // })(MapContainer)
 
+//40.3826568,-3.692763,15z
 
 import React, { Component } from 'react'
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
- //40.3826568,-3.692763,15z
+import AuthService from '../service/authService'
+
 export class MapContainer extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      center:{
+        title: '',
+      },
+      centros:[]
+    }
+
+    //console.log(this.state)
+    this.service = new AuthService()
+
+  }
+
+  getCenter = () => {
+    //console.log("sdf")
+    this.service.getDataCenter() 
+    .then(res => {
+      //console.log(res)
+
+      this.setState({
+        centros: res
+      })
+    })
+    .catch(err => console.log(err))
+  }
+
+
+  componentDidMount(){
+    this.getCenter()
+  }
+
+  
   render() {
+
     return (
       <div className="map">
       <Map google={this.props.google} zoom={14} 
@@ -39,7 +75,13 @@ export class MapContainer extends Component {
  
         <Marker onClick={this.onMarkerClick}
                 name={'Current location'} />
- 
+        {this.state.centros.map((centro, index) => {
+          //console.log(centro.location)
+          return <Marker key={index} title={centro.title} position={{lat:centro.location.coordinates[0], lng:centro.location.coordinates[1]}}/>
+        })}
+        
+        
+        
         {/* <InfoWindow onClose={this.onInfoWindowClose}>
             <div>
               <h1>{this.state.selectedPlace.name}</h1>

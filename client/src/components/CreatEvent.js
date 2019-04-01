@@ -70,9 +70,11 @@ export default class CreatEvent extends Component {
                 this.props.setUser(res.data)
 
             })
-            .catch(err => err)
+            .catch(err => console.log(err))
+            
     }
 
+    
     render() {
         
         return (

@@ -9,7 +9,7 @@ import CreatEvent from './components/CreatEvent'
 import EventList from './components/EventList'
 import EventDetails from './components/EventDetails'
 import EventCard from './components/EventCard'
-import { Link } from 'react-router-dom'
+
 
 
 class App extends Component {
@@ -42,8 +42,8 @@ class App extends Component {
             <Route exact path='/profile'      render={() => <Profile      setUser={this.setTheUser}/>}/>
             <Route exact path='/creatEvent'   render={() => <CreatEvent   setUser={this.setTheUser}/>}/>
             <Route exact path='/eventList'    render={() => <EventList    setUser={this.setTheUser}/>}/>
-            <Route path='/eventDetails/:id' exact component={EventDetails}/>
             <Route exact path='/eventCard'    render={() => <EventCard    setUser={this.setTheUser}/>}/>
+            <Route path='/eventDetails/:id' exact component={EventDetails}/>
 
           </Switch>
         </header>

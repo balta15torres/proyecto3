@@ -57,19 +57,7 @@ export default class authService {
         
     }
 
-    getEvents = () => {
-
-        const pro = this.service.get('getAllEvents' ,{ withCredentials: true })
-        .then( res => {
-            console.log(res.data)
-            return res.data
-        })
-        .catch(err => { 
-            console.log(err)
-        })
-        return pro
-    } 
-
+    
     getOneEvent = idEvent=> {
         const pro = this.service.get(`getOneEvent/${idEvent}`,{ withCredentials: true })
         .then( res => {
@@ -81,10 +69,41 @@ export default class authService {
         return pro
     }
     
+    getEvents = () => {
 
-
-
+        const pro = this.service.get('getAllEvents' ,{ withCredentials: true })
+        .then( res => {
+            //console.log(res.data)
+            
+            return res.data
+        })
+        .catch(err => { 
+            console.log(err)
+        })
+        return pro
+    } 
     
+    getCenters = () => {
+        const pro = this.service.get('getAllCenters' ,{
+            withCredentials: true })
+            .then( res => {
+                console.log(res.data)
+                return res.data
+            })
+            .catch( err => {
+                console.log(err)
+            })
+        return pro 
+    }
+    
+    getDataCenter = () => {
+        //console.log("eoo")
 
+        return this.service.get('getAllCenters')
+        .then (res => res.data)
+            
+        
+    }
+    
 }
 
