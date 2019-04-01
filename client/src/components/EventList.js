@@ -31,8 +31,8 @@ export default class EventDetails extends Component {
     return (
         <div className="container">
 
-        <h1>Eventos</h1>
-        <div className="rows-center">
+        <h1 className="title">EVENTOS</h1>
+        <div >
         {
          this.state.events.map(event => <EventCard key={event._id} {...event} />)
         }

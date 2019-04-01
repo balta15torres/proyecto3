@@ -23,14 +23,16 @@ p{
     font-size: 25px;
     text-align: center;
     position: relative;
+    margin-bottom: 40px;
+
 }
 .title:before{
   content: '';
-  width: 40%;
+  width: 70px;
   height: 1px;
   background: white;
   position: absolute;
-  bottom: -5px;
+  bottom: -13px;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -47,6 +49,19 @@ p{
   justify-content: center;
   flex-direction: column;
 }
+.row-between{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.row-start{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
 
 .rows-center {
   display: flex;
@@ -220,13 +235,14 @@ input[name="password"]{
 
 /* PROFILE */
 .image-profile{
-  height: 150px;
+  height: 250px;
   width: 100%;
   margin-bottom: 25px;
+  
 }
 .image-profile img{
   max-height: 100%;
-    max-width: 100%;
+  width: auto;
 }
 .description-profile p{
   margin:20px 0;
@@ -240,4 +256,21 @@ input[name="password"]{
   right: 20px;
   background-size: contain;
   background-repeat: no-repeat;
+}
+/* EVENT-CARD */
+.event-card{
+  margin:15px 0;
+}
+.image-event {
+  max-width: 95px;
+}
+.description-event{
+  text-align: left;
+  width: 165px;
+  margin: 0 20px
+}
+/* EVENT-CARD-DETAIL */
+.event-image-detail{
+  width: 100%;
+  max-height: 195px;
 }

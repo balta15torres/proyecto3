@@ -26,7 +26,7 @@ export default class EventDetails extends Component {
   render() {
     return (
       <div>
-      <h1>Detalles Evento</h1>
+     <img src="/img/img-prueba2.jpg" alt="" className="event-image-detail"/>
       
            <div className="description-profile">
                <div className="userName">
