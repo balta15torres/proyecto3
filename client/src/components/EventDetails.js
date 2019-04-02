@@ -34,6 +34,10 @@ export default class EventDetails extends Component {
                    <p>{this.state.event.location}</p>
                </div>
                <div className="userName">
+                   <p className="title">centro</p>
+                   <p>{this.state.event.center}</p>
+               </div>
+               <div className="userName">
                    <p className="title">Data</p>
                    <p>{this.state.event.data}</p>
                </div>

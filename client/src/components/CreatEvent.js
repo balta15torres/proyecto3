@@ -10,7 +10,9 @@ export default class CreatEvent extends Component {
         super(props)
         this.state = {
             event: {
+                listCenter:undefined,
                 location: '',
+                center:[],
                 data: '',
                 hour: '',
                 participants: '',
@@ -25,50 +27,63 @@ export default class CreatEvent extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        const location = this.state.location
-        const data = this.state.data
-        const hour = this.state.hour
-        const participants = this.state.participants
-        const comments = this.state.comments
 
-        this.service.getDataEvent(location, data, hour, participants,comments)
+        console.log(this.state)
+        const location     = this.state.event.location
+        const center       = this.state.event.center
+        const data         = this.state.event.data
+        const hour         = this.state.event.hour
+        const participants = this.state.event.participants
+        const comments     = this.state.event.comments
+
+        this.service.getDataEvent(location, center,data, hour, participants,comments)
             .then(res => {
                 this.setState({
                     event: {
                         location: '',
+                        center:'',
                         data: '',
                         hour: '',
                         participants: '',
-                        comments:""
+                        comments:''
                     }
                 })
-                console.log(this.setState)
+                
                 //this.service = new Event()
                 this.props.setUser(res.data)
                 window.location.assign('EventList')
             })
             .catch(err => err)
-    }
+            
+        }
 
     handleChange = (e) => {
         const { name, value } = e.target
 
         //this.setState({...this.state.event, [name]: value})
-
-        this.setState({ [name]: value });
+        if(name == "location"){
+            this.service.getCenter(value)
+            .then(centros => {
+                this.setState({event : { ...this.state.event ,[name]: value, listCenter:centros}})
+            })
+        } else {   
+            this.setState({ event: {...this.state.event ,[name]: value }});
+        }
     }
 
     getEvent = () => {
         this.service.getDataEvent()
             .then(res => {
-                const { location, data, hour, participants, comments } = res
+                const { listCenter,location, center,data, hour, participants, comments } = res
 
                 this.setState({
-                    location: location,
-                    data: data,
-                    hour: hour,
-                    participants: participants,
-                    comments: comments
+                    listCenter,
+                    location,
+                    center,
+                    data,
+                    hour,
+                    participants,
+                    comments
 
                 })
 
@@ -81,7 +96,7 @@ export default class CreatEvent extends Component {
 
     
     render() {
-        
+        console.log(this.state.event.center)
         return (
             
             <div className="container column-center">
@@ -95,10 +110,35 @@ export default class CreatEvent extends Component {
                     <div className="form-group">
 
                         <select type="options" className="form-control" name="location" value={this.state.location} onChange={e => this.handleChange(e)}>
-                            {/* poner en las options los distritos de la api C.Madrid */}
-                            <option>¿Distrito?</option>
-                            <option>¿Distrito?</option>
+                            {/* <option value="" disabled selected >¿distrito?</option> */}
+                            <option value='ARGANZUELA'>ARGANZUELA</option>
+                            <option value='BARAJAS'>BARAJAS</option>
+                            <option value='CARABANCHEL'>CARABANCHEL</option>
+                            <option value='CHAMARTIN'>CHAMARTIN</option>
+                            <option value='CHAMBERI'>CHAMBERI</option>
+                            <option value='CIUDAD LINEAL'>CIUDAD LINEAL</option>
+                            <option value='FUENCARRAL-EL PARDO'>FUENCARRAL-EL PARDO</option>
+                            <option value='HORTALEZA'>HORTALEZA</option>
+                            <option value='LATINA'>LATINA</option>
+                            <option value='MORATALAZ'>MORATALAZ</option>
+                            <option value='MONCLOA'>MONCLOA</option>
+                            <option value='PUENTE DE VALLECAS'>PUENTE DE VALLECAS</option>
+                            <option value='RETIRO'>RETIRO</option>
+                            <option value='SALAMANCA'>SALAMANCA</option>
+                            <option value='SAN BLAS-CANILLEJAS'>SAN BLAS-CANILLEJAS</option>
+                            <option value='TETUAN'>TETUAN</option>
+                            <option value='USERA'>USERA</option>
+                            <option value='VICALVARO'>VICALVARO</option>
+                            <option value='VILLA DE VALLECAS'>VILLA DE VALLECAS</option>
+                            <option value='VILLAVERDE'>VILLAVERDE</option>
 
+                        </select>
+                    </div>
+
+                    <div className="form-group">
+
+                        <select type="options" className="form-control" name="center" value={this.state.event.listCenter || ""} onChange={e => this.handleChange(e)}>
+                            { this.state.event.listCenter!== undefined && this.state.event.listCenter.map((centro, index) => <option key={index} value={centro.title}>{centro.title}</option>)}
                         </select>
                     </div>
 

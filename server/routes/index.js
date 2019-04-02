@@ -12,20 +12,22 @@ router.get("/getDataUser",(req,res,next) =>{
   
 
   console.log(req.user)
-  res.status(200).json(req.user);
+  res.status(200).json(req.user)
 })
 
 router.post('/getDataE',(req,res,next) => {
-  const location = req.body.location
-  const data = req.body.data
-  const hour = req.body.hour
-  const participants = req.body.participants
+
+  console.log(req.body)
+
+  const {location,center, data, hour, participants, comments} = req.body
   
   const newEvent = new Event({
     location,
+    center,
     data,
     hour,
-    participants
+    participants,
+    comments
   });
   
 
@@ -59,5 +61,13 @@ router.get('/getAllCenters', (req, res) => {
     res.json(centers)
   })
 });
+
+router.post('/getCenters',(req,res) => {
+  const distrito = req.body.distrito
+  Centers.find({distrito})
+  .then(data => res.json(data))
+  .catch(err => console.log(err))
+
+})
 
 module.exports = router;

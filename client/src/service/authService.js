@@ -47,10 +47,9 @@ export default class authService {
                 )
     }
 
-    getDataEvent = (location,data,hour,participants) => {
-        console.log(location,data,hour,participants)
+    getDataEvent = (location,center,data,hour,participants,comments) => {
         
-        return this.service.post('getDataE',{location,data,hour,participants})
+        return this.service.post('getDataE',{location,center,data,hour,participants,comments})
         .then (res => res.data)
             
             //console.log(res.data)
@@ -97,12 +96,16 @@ export default class authService {
     }
     
     getDataCenter = () => {
-        //console.log("eoo")
 
         return this.service.get('getAllCenters')
         .then (res => res.data)
             
         
+    }
+
+    getCenter = (distrito) => {
+        return this.service.post('getCenters', {distrito})
+        .then(response => response.data);
     }
     
 }
