@@ -35,11 +35,21 @@ export class MapContainer extends Component {
     this.state = {
       center:{
         title: '',
+        location : {
+          latitude :"",
+          longitude : ""
+        },
+        organization : 
+        {
+          schedule:"",
+          services:""
+        } 
       },
       centros:[]
+      
     }
 
-    //console.log(this.state)
+   
     this.service = new AuthService()
 
   }
@@ -54,7 +64,10 @@ export class MapContainer extends Component {
         centros: res
       })
     })
-    .catch(err => console.log(err))
+    .catch(err => 
+      console.log(err)
+    )
+
   }
 
 
@@ -76,8 +89,8 @@ export class MapContainer extends Component {
         <Marker onClick={this.onMarkerClick}
                 name={'Current location'} />
         {this.state.centros.map((centro, index) => {
-          //console.log(centro.location)
-          return <Marker key={index} title={centro.title} position={{lat:centro.location.coordinates[0], lng:centro.location.coordinates[1]}}/>
+          return <Marker key={index} title={centro.title} position={{lat:centro.location.latitude, lng:centro.location.longitude}}/>
+          
         })}
         
         

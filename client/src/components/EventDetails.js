@@ -45,6 +45,10 @@ export default class EventDetails extends Component {
                    <p className="title">Participants</p>
                    <p>{this.state.event.participants}</p>
                </div>
+               <div className="userName">
+                   <p className="title">Comments</p>
+                   <p>{this.state.event.comments}</p>
+               </div>
            </div> 
 
            <button type="delete">Delete</button>

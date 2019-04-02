@@ -4,8 +4,15 @@ const Schema   = mongoose.Schema
 const centersSchema = new Schema({
     idSchema : String,
     title: String, 
-   location: {latitude: Number, longitude: Number },
-        coordinates: []
+    distrito:String,
+   location: {
+       latitude: Number, 
+       longitude: Number 
+    },
+   organization :{
+       schedule:String,
+       services:String
+    }
        }, 
        {
        timestamps: true

@@ -5,7 +5,8 @@ const eventSchema = new Schema({
     location:String,
     data:String,
     hour:String,
-    participants:Number
+    participants:Number,
+    comments:String
 }, {
   timestamps: {
     createdAt: 'created_at',

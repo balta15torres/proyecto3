@@ -13,7 +13,8 @@ export default class CreatEvent extends Component {
                 location: '',
                 data: '',
                 hour: '',
-                participants: ''
+                participants: '',
+                comments: ""
             }
         }
         //console.log(this.state)
@@ -28,15 +29,17 @@ export default class CreatEvent extends Component {
         const data = this.state.data
         const hour = this.state.hour
         const participants = this.state.participants
+        const comments = this.state.comments
 
-        this.service.getDataEvent(location, data, hour, participants)
+        this.service.getDataEvent(location, data, hour, participants,comments)
             .then(res => {
                 this.setState({
                     event: {
                         location: '',
                         data: '',
                         hour: '',
-                        participants: ''
+                        participants: '',
+                        comments:""
                     }
                 })
                 console.log(this.setState)
@@ -58,13 +61,15 @@ export default class CreatEvent extends Component {
     getEvent = () => {
         this.service.getDataEvent()
             .then(res => {
-                const { location, data, hour, participants } = res
+                const { location, data, hour, participants, comments } = res
 
                 this.setState({
                     location: location,
                     data: data,
                     hour: hour,
-                    participants: participants
+                    participants: participants,
+                    comments: comments
+
                 })
 
                 this.props.setUser(res.data)
@@ -109,6 +114,10 @@ export default class CreatEvent extends Component {
 
                     <div className="form-group">
                         <input type="number" className="form-control" name="participants" placeholder="Numero de participantes" value={this.state.participants} onChange={e => this.handleChange(e)} />
+                    </div>
+                    
+                    <div className="form-group">
+                        <input type="string" className="form-control" name="comments" placeholder="Comentarios" value={this.state.comments} onChange={e => this.handleChange(e)} />
                     </div>
 
                     <Button variant="primary" type="submit">Submit</Button>
