@@ -28,7 +28,7 @@ a{
 }
 .title{
   font-weight: bold;
-    font-size: 25px;
+    font-size: 35px;
     text-align: center;
     position: relative;
     margin-bottom: 40px;
@@ -37,11 +37,11 @@ a{
 }
 .title:before{
   content: '';
-  width: 70px;
-  height: 1px;
-  background: white;
+  width: 80px;
+  height: 2px;
+  background: #fdd752;
   position: absolute;
-  bottom: -13px;
+  bottom: -12px;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -181,6 +181,9 @@ a{
   border-radius: 0;
   margin-bottom: 15px;
 }
+.form-control.-file{
+  background: #ffffff85;
+}
 .form-control:focus {
   color: white;
   background-color: transparent;
@@ -201,6 +204,7 @@ form{
     margin: 20px;
     border-color: transparent;
     padding: 8px 12px;
+    border-radius: 10px;
 }
 .btn.-destacado{
   background: #fdd852;

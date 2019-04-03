@@ -55,11 +55,11 @@ export default class Signup extends Component {
   render() {
     return (
       <div className="container column-center">
-      <p>
+      {/* <p>
          ¿Estas registrado? 
          <Link to='/login' className="nav-element">
          Conectate</Link>
-      </p>
+      </p> */}
       <p className="title">REGISTRATE</p>
       <div className="signup">
       <Form  onSubmit={this.handleFormSubmit}>
@@ -79,9 +79,9 @@ export default class Signup extends Component {
          </Form.Group>
          <div className="form-group">
            
-            <input className="form-control" type="file" name="imageUrl" placeholder="image" value={this.state.imageUrl} onChange={e => this.handleChangeIMG(e)} />
+            <input className="form-control -file" type="file" name="imageUrl" placeholder="image" value={this.state.imageUrl} onChange={e => this.handleChangeIMG(e)} />
          </div>
-         <Button variant="primary" type="submit">Submit</Button>
+         <Button className="-destacado" variant="primary" type="submit">Submit</Button>
       </Form></div>
    </div>
     )
