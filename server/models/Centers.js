@@ -5,14 +5,15 @@ const centersSchema = new Schema({
     idSchema : String,
     title: String, 
     distrito:String,
-   location: {
+    location: {
        latitude: Number, 
        longitude: Number 
     },
-   organization :{
+    organization :{
        schedule:String,
        services:String
-    }
+    },
+    events: [{type:Schema.Types.ObjectId, ref: "Event"}]
        }, 
        {
        timestamps: true

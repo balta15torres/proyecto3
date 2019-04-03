@@ -1,7 +1,10 @@
 const express = require('express');
 const router  = express.Router();
 const Event = require("../models/Event")
-const Centers = require("../models/Centers");
+const Centers = require("../models/Centers")
+const uploadCloud = require("../configs/cloudinary")
+const User = require("../models/User")
+
 /* GET home page */
 router.get('/', (req, res, next) => {
   res.render('index');
@@ -11,28 +14,29 @@ router.get('/', (req, res, next) => {
 router.get("/getDataUser",(req,res,next) =>{
   
 
-  console.log(req.user)
+  console.log("eoooo")
   res.status(200).json(req.user)
 })
 
-router.post('/getEditUser',(req,res,next)=>{
-  const { imageUrl,username,email} = res.body
+router.post('/getEditUser',uploadCloud.single('photo'),(req,res,next)=>{
+  
 
-  const newUser =new User({
-    imageUrl,
-    username,
-    email
+  const imageUrl = req.file.secure_url
+  const username = req.body.username
+  const email = req.body.email
+  console.log(req.body)
+  if (username === "" || email === "") {
+    res.status(400).json({ message: 'Provide username and password' })
+    return;
+}
+  User.findByIdAndUpdate(req.user._id, {imageUrl, username, email}, {new:true})
+  .then(user =>{
+    res.status(200).json(user)
   })
-
-  newUser.save()
-  .then(()=> {
-    res.status(200).json(newUser)
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(400).json({ message: 'Saving user to database went wrong.' });
-  })
+  .catch(err => 
+    res.json(err))
 })
+
 
 router.post('/getDataE',(req,res,next) => {
 
@@ -51,8 +55,12 @@ router.post('/getDataE',(req,res,next) => {
   
 
   newEvent.save()
-  .then(() => {
-    res.status(200).json(newEvent);
+  .then((event) => {
+    console.log(event)
+    Centers.findOneAndUpdate({title:center}, {$push:{events:event._id}}, {new:true}).then((e) => {
+      console.log(e)
+      res.status(200).json(newEvent);
+    }) 
   })
   .catch(err => {
     console.log(err)
@@ -81,12 +89,13 @@ router.get('/removeEvent/:id',(req,res) => {
 
 router.get('/getAllCenters', (req, res) => {
   Centers.find()
+  .populate("events")
   .then(centers => {
     console.log(centers)
     res.json(centers)
   })
 });
-
+/////////////////////////////////////////////
 router.post('/getCenters',(req,res) => {
   const distrito = req.body.distrito
   Centers.find({distrito})

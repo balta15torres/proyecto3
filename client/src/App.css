@@ -274,3 +274,10 @@ input[name="password"]{
   width: 100%;
   max-height: 195px;
 }
+
+/* MAPA */
+
+.desc-map{
+  color:black;
+  font-size: 10px;
+}

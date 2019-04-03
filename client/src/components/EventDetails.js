@@ -15,7 +15,7 @@ export default class EventDetails extends Component {
     }
 
     componentDidMount() {
-      console.log(this.props.match.params.id)
+      //console.log(this.props.match.params.id)
 
       this.service.getOneEvent(this.props.match.params.id)
           .then(res => this.setState({ event: res }))

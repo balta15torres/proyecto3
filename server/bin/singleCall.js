@@ -16,7 +16,7 @@ const distritos = ["ARGANZUELA","BARAJAS","CARABANCHEL","CENTRO","CHAMARTIN","CH
 
 Promise.all(
   distritos.map(distrito => {
-
+    
     return axios.get(`https://datos.madrid.es/egob/catalogo/200186-0-polideportivos.json?distrito_nombre=${distrito}`)
       .then(response => {
         //console.log(response.data['@graph']);

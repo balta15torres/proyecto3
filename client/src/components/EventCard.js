@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import NavBottom from './NavBottom/NavBottom'
 
 const EventCard = Event => {
-  //console.log(Event.location)
+  console.log(Event.center.organization)
   return (
     
       <div className="">

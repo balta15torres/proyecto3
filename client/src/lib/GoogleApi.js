@@ -1,30 +1,3 @@
-// import {GoogleApiWrapper} from 'google-maps-react';
-// import React, { Component } from 'react'
- 
-// // ...
- 
-// export class MapContainer extends React.Component {
-//     constructor() {
-//         super()
-//     }
-
-//     render() {
-//         return <h1>test</h1>
-//     }
-// }
-
-// const LoadingContainer = (props) => (
-//     <div>Fancy loading container!</div>
-//   )
- 
-// export default GoogleApiWrapper({
-//   apiKey: 'AIzaSyDUeQXCyJDlhOtCB8JwWAk8zCxpjk6k-jo', 
-//   LoadingContainer: LoadingContainer
-
-// })(MapContainer)
-
-//40.3826568,-3.692763,15z
-
 import React, { Component } from 'react'
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import AuthService from '../service/authService'
@@ -75,31 +48,72 @@ export class MapContainer extends Component {
     this.getCenter()
   }
 
+  onMarkerClick = (props, marker, e) =>{
+  console.log(props.events)
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true,
+      title : props.title,
+      events: props.events
+    })};
+ 
+  onMapClicked = (props) => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null,
+        title : "eooo",
+      })
+    }
+  };
+
+    
+ 
+
   
   render() {
-
+//console.log(this.state.center.title)
     return (
       <div className="map">
       <Map google={this.props.google} zoom={14} 
+      onClick={this.mapClicked}
         initialCenter={{
             lat: 40.3922936,
-            lng: -3.6985593
-        }}>
+            lng: -3.6985593}}>
+        
  
-        <Marker onClick={this.onMarkerClick}
-                name={'Current location'} />
+        
         {this.state.centros.map((centro, index) => {
-          return <Marker key={index} title={centro.title} position={{lat:centro.location.latitude, lng:centro.location.longitude}}/>
-          
-        })}
-        
-        
-        
-        {/* <InfoWindow onClose={this.onInfoWindowClose}>
+          //console.log(centro.events)
+          return <Marker key={index} title={centro.title} events={centro.events}position={{lat:centro.location.latitude, lng:centro.location.longitude}} 
+          onClick={this.onMarkerClick} 
+          />})}
+
+         
+         
+         <InfoWindow
+         
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}>
             <div>
-              <h1>{this.state.selectedPlace.name}</h1>
+              <h1 className="desc-map">{this.state.title}</h1>
+              {console.log(this.state)}
+        {this.state.events ? this.state.events.map((event, index) => <p key={index} className="desc-map">*HAY EVENTO*{event.data}/{event.hour} </p>):null}
             </div>
-        </InfoWindow> */}
+        </InfoWindow>
+        
+        
+      <Marker onClick={this.onMarkerClick}
+        
+        name={this.state.centros}
+        
+
+      />
+        
+        
+        
+        
       </Map>
       </div>
     );

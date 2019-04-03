@@ -58,8 +58,8 @@ export default class EditProfile extends Component {
   
   handleFormSubmit = e => {
     e.preventDefault()
-    const username = this.state.username
-    const email = this.state.email
+    const username = this.state.user.username
+    const email = this.state.user.email
     const photo = this.state.photo
 
     this.service.editProfile(username, email, photo)
@@ -68,10 +68,12 @@ export default class EditProfile extends Component {
           username: "",
           email: "",
           imageUrl: ""
-        })
-        this.props.setUser(res)
+        }, () => {
 
-        window.location.assign('/profile')
+          // this.props.setUser(res)
+  
+          window.location.assign('profile')
+        })
       })
       .catch(err => err)
   }
@@ -80,6 +82,14 @@ export default class EditProfile extends Component {
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({user:{...this.state.user, [name]: value }});
+    console.log(this.state)
+  }
+
+  handleChangeIMG = (e) => {
+    const { name, files, value } = e.target;
+    this.setState({ "photo": files[0], [name]:value }, () => {
+      console.log(this.state)
+    });
   }
     
 
@@ -88,7 +98,7 @@ export default class EditProfile extends Component {
       
       <div className="container column-center">
         <h1>modifica</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleFormSubmit}>
         <Button variant="primary" type="submit">Submit</Button>
         <div className="description-profile">
                <div className="userName">

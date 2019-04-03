@@ -47,10 +47,24 @@ export default class authService {
                 )
     }
 
-    getEditDataUser = (imageUrl,username,email) => {
-        return this.service.post('getEditUser',{imageUrl,username,email})
-        .then(res => res.data)
+    editProfile = (username, email,imageUrl) =>{ 
+        const uploadData = new FormData();
+        uploadData.append("photo", imageUrl)
+        uploadData.append("username", username)
+        uploadData.append("email", email)
+
+        console.log(uploadData.get("username"))
+        return this.service.post('getEditUser', uploadData)
+            .then(res => res.data)
+
+
     }
+
+    // getEditDataUser = (imageUrl,username,email) => {
+    //     console.log(username)
+    //     return this.service.post('getEditUser',{imageUrl,username,email})
+    //     .then(res => res.data)
+    // }
 
     getDataEvent = (location,center,data,hour,participants,comments) => {
         
@@ -119,8 +133,9 @@ export default class authService {
             
         
     }
-
+    /////////////////////////////////////////////////
     getCenter = (distrito) => {
+       // console.log(distrito)
         return this.service.post('getCenters', {distrito})
         .then(response => response.data);
     }

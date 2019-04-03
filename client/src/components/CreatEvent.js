@@ -46,12 +46,14 @@ export default class CreatEvent extends Component {
                         hour: '',
                         participants: '',
                         comments:''
-                    }
+                    },
+                }, () => {
+                    
+                    window.location.assign('eventList')
                 })
                 
                 //this.service = new Event()
                 this.props.setUser(res.data)
-                window.location.assign('EventList')
             })
             .catch(err => err)
             
@@ -96,7 +98,7 @@ export default class CreatEvent extends Component {
 
     
     render() {
-        console.log(this.state.event.center)
+        //console.log(this.state.event.center)
         return (
             
             <div className="container column-center">
