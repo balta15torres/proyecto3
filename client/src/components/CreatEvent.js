@@ -110,7 +110,7 @@ export default class CreatEvent extends Component {
                     <div className="form-group">
 
                         <select type="options" className="form-control" name="location" value={this.state.location} onChange={e => this.handleChange(e)}>
-                            {/* <option value="" disabled selected >¿distrito?</option> */}
+                            <option value="" disabled selected >¿distrito?</option>
                             <option value='ARGANZUELA'>ARGANZUELA</option>
                             <option value='BARAJAS'>BARAJAS</option>
                             <option value='CARABANCHEL'>CARABANCHEL</option>

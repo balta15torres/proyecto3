@@ -18,14 +18,22 @@ export default class EventDetails extends Component {
       console.log(this.props.match.params.id)
 
       this.service.getOneEvent(this.props.match.params.id)
-          .then(response => this.setState({ event: response }))
+          .then(res => this.setState({ event: res }))
   }
+
+removeEvento(){
+
+    this.service.removeEvent(this.props.match.params.id)    
+    .then(res => this.setState({event:res}))
+    window.location.assign('/EventList')
+}
 
     
 
   render() {
-    return (
-      <div>
+      return (
+          <div>
+          <button onClick={() => this.removeEvento(this.state.event.id)}>Eliminar</button>
      <img src="/img/img-prueba2.jpg" alt="" className="event-image-detail"/>
       
            <div className="description-profile">
@@ -54,8 +62,7 @@ export default class EventDetails extends Component {
                    <p>{this.state.event.comments}</p>
                </div>
            </div> 
-
-           <button type="delete">Delete</button>
+           
               
            <NavBottom/>
 

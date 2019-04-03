@@ -43,7 +43,7 @@ export default class Profile extends Component {
 render() {
     return (
        <div className="container column-center">
-       <Link to="" className="edit"></Link>
+       <Link to="/editProfile" className="edit"></Link>
            <div className="image-profile">
            {/* <img src="/img/img-prueba.jpg"/> */}
             <img className="card-img-top" src={this.state.imageUrl} alt={this.state.imageUrl} />

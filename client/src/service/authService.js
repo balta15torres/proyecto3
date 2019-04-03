@@ -47,6 +47,11 @@ export default class authService {
                 )
     }
 
+    getEditDataUser = (imageUrl,username,email) => {
+        return this.service.post('getEditUser',{imageUrl,username,email})
+        .then(res => res.data)
+    }
+
     getDataEvent = (location,center,data,hour,participants,comments) => {
         
         return this.service.post('getDataE',{location,center,data,hour,participants,comments})
@@ -63,6 +68,18 @@ export default class authService {
             return res.data
         })
         .catch(err => { 
+            console.log(err)
+        })
+        return pro
+    }
+
+    removeEvent = idEvent => {
+        const pro = this.service.get(`removeEvent/${idEvent}`,{withCredentials: true})
+        .then(res => {
+            
+            return res.data
+        })
+        .catch(err => {
             console.log(err)
         })
         return pro

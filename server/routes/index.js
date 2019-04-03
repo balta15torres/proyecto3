@@ -15,6 +15,25 @@ router.get("/getDataUser",(req,res,next) =>{
   res.status(200).json(req.user)
 })
 
+router.post('/getEditUser',(req,res,next)=>{
+  const { imageUrl,username,email} = res.body
+
+  const newUser =new User({
+    imageUrl,
+    username,
+    email
+  })
+
+  newUser.save()
+  .then(()=> {
+    res.status(200).json(newUser)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(400).json({ message: 'Saving user to database went wrong.' });
+  })
+})
+
 router.post('/getDataE',(req,res,next) => {
 
   console.log(req.body)
@@ -53,6 +72,12 @@ router.get('/getAllEvents', (req,res,next) => {
   .catch(err => console.log(err))
 })
 
+router.get('/removeEvent/:id',(req,res) => {
+  Event.findByIdAndDelete(req.params.id)
+  .then(data => res.json(data))
+  .catch(err => console.log(err))
+})
+
 
 router.get('/getAllCenters', (req, res) => {
   Centers.find()
@@ -69,5 +94,9 @@ router.post('/getCenters',(req,res) => {
   .catch(err => console.log(err))
 
 })
+
+
+
+
 
 module.exports = router;
