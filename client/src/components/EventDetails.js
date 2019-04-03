@@ -8,7 +8,9 @@ export default class EventDetails extends Component {
 
         super(props)
 
-        this.state = { event : {}, organization: {} }
+        this.state = { 
+            event : {}
+    }
 
         this.service = new AuthService()
 
