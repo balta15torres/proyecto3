@@ -56,12 +56,12 @@ export default class Login extends Component {
           
           </Form.Group>
 
-          <Button type="submit">Submit</Button>
+          <Button className="-destacado" type="submit">Submit</Button>
         
         </Form>
 
         <p>¿Aún no estás registrado? </p>
-        <Link to='/signup' className="nav-element"><u>Registrarse</u> </Link>
+        <Link to='/signup' className="nav-element "><u>Registrarse</u> </Link>
 
       </div>
 

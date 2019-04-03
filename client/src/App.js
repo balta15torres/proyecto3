@@ -69,7 +69,10 @@ class App extends Component {
       <div className="App">
       
       <header className="App-header">
-      
+      {/* <div className="home-intro column-center">
+      <p>¿Estas registrado? <Link to='/login' className="nav-element">Conectate</Link></p> 
+      <Link to='/signup' className="nav-element btn -destacado">Registrarse</Link>
+      </div> */}
 
           <Switch>
             

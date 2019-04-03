@@ -141,6 +141,7 @@ export default class CreatEvent extends Component {
 
                         <select type="options" className="form-control" name="center" value={this.state.event.listCenter || ""} onChange={e => this.handleChange(e)}>
                             { this.state.event.listCenter!== undefined && this.state.event.listCenter.map((centro, index) => <option key={index} value={centro.title}>{centro.title}</option>)}
+                            <option>Selecciona tu Centro Deportivo</option>
                         </select>
                     </div>
 
@@ -162,7 +163,7 @@ export default class CreatEvent extends Component {
                         <input type="string" className="form-control" name="comments" placeholder="Comentarios" value={this.state.comments} onChange={e => this.handleChange(e)} />
                     </div>
 
-                    <Button variant="primary" type="submit">Submit</Button>
+                    <Button variant="primary" className="-destacado" type="submit">Submit</Button>
 
                 </form>
                 

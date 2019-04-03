@@ -9,10 +9,16 @@
     -webkit-justify-content: space-around;
     justify-content: space-around;
     background: white;
+    height: 60px;
+    display: flex;
     color: #282c34;
     height: 45px;
     display: flex;
     -webkit-align-items: center;
     align-items: center;
     z-index: 2;
+    padding: 30px 10px;
+}
+a{
+    color: #282c34;
 }

@@ -227,6 +227,7 @@ form{
   border-radius: 0;
   box-shadow: none;
   outline: none;
+  border-radius: 10px;
 }
 input[name="username"]{
   background: url(/img/user.png);
@@ -252,14 +253,15 @@ input[name="password"]{
 
 /* HOME */
 .container.-home{
-  padding: 15px 0;
+  padding: 0;
+  position: fixed;
 }
 .mapa{
   width: 100%;
-  margin-top: 40px;
 }
 .map {
-  height: 25rem;
+  /* height: 25rem; */
+  height: 100vh;
   width: 100%;
   position: relative;
   margin-bottom: 200px;
@@ -291,10 +293,42 @@ input[name="password"]{
 }
 /* EVENT-CARD */
 .event-card{
-  margin:15px 0;
+  margin: 15px 0;
+  border-bottom: 1px solid #fdd852;
+  padding: 10px 0;
+  color: white;
+  background: url('/img/next.png');
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: 20px;
 }
 .image-event {
   max-width: 95px;
+}
+.participant{
+  position: relative;
+  padding-right: 5px;
+}
+.participant:before{
+  content: '';
+    position: absolute;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    background: url('/img/user.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    right: -20px;
+}
+.location{
+  position: relative;
+    margin-bottom: 5px;
+    color: #fdd852;
+}
+
+.center,
+.data{
+  font-size: 15px;
 }
 .description-event{
   text-align: left;
