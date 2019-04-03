@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import AuthService from '../service/authService'
+import { Link } from 'react-router-dom'
+import {BrowserRouter as Router} from 'react-router-dom'
 
 export class MapContainer extends Component {
   constructor(props){
@@ -73,7 +75,7 @@ export class MapContainer extends Component {
 
   
   render() {
-//console.log(this.state.center.title)
+console.log(this.props)
     return (
       <div className="map">
       <Map google={this.props.google} zoom={14} 
@@ -99,7 +101,13 @@ export class MapContainer extends Component {
             <div>
               <h1 className="desc-map">{this.state.title}</h1>
               {console.log(this.state)}
-        {this.state.events ? this.state.events.map((event, index) => <p key={index} className="desc-map">*HAY EVENTO*{event.data}/{event.hour} </p>):null}
+              <Router>
+        {this.state.events ? this.state.events.map((event, index) => <p key={index} className="desc-map">
+         
+         <Link to={`/eventDetails/${event._id}`}>Detalles evento</Link>
+         </p>)
+         :null}
+        </Router>
             </div>
         </InfoWindow>
         

@@ -55,11 +55,11 @@ export default class Signup extends Component {
   render() {
     return (
       <div className="container column-center">
-      {/* <p>
+      <p>
          ¿Estas registrado? 
          <Link to='/login' className="nav-element">
          Conectate</Link>
-      </p> */}
+      </p>
       <p className="title">REGISTRATE</p>
       <div className="signup">
       <Form  onSubmit={this.handleFormSubmit}>

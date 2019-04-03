@@ -8,7 +8,7 @@ export default class EventDetails extends Component {
 
         super(props)
 
-        this.state = { event : {} }
+        this.state = { event : {}, organization: {} }
 
         this.service = new AuthService()
 
@@ -16,9 +16,9 @@ export default class EventDetails extends Component {
 
     componentDidMount() {
       //console.log(this.props.match.params.id)
-
+      console.log(this.state.event.organization)
       this.service.getOneEvent(this.props.match.params.id)
-          .then(res => this.setState({ event: res }))
+          .then(res => this.setState({ event: res, organization :{} }))
   }
 
 removeEvento(){
@@ -31,6 +31,7 @@ removeEvento(){
     
 
   render() {
+      console.log(this.state.event.organization)
       return (
           <div>
           <button onClick={() => this.removeEvento(this.state.event.id)}>Eliminar</button>
