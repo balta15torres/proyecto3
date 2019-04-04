@@ -8,12 +8,17 @@ const eventSchema = new Schema({
     data:String,
     hour:String,
     participants:Number,
-    comments:String
+    comments:String,
+    idParticipants: [{type: Schema.Types.ObjectId, ref: "User"}],
+    email:String,
+    tlf:Number
+
 }, {
   timestamps: {
     createdAt: 'created_at',
     updatedAt: 'updated_at'
   }
+  
 });
 
 const Event = mongoose.model('Event', eventSchema);

@@ -229,7 +229,7 @@ form{
   outline: none;
   border-radius: 10px;
 }
-input[name="username"]{
+ input[name="username"]{
   background: url(/img/user.png);
     background-repeat: no-repeat;
     background-position: 10px center;

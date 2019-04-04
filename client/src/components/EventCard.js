@@ -5,9 +5,10 @@ import NavBottom from './NavBottom/NavBottom'
 const EventCard = Event => {
   console.log(Event.center.organization)
   return (
-    
-      <div className="">
+    ///en la class row-start esta el problema de scroll///
+      <div >
     <div >
+       
     <Link className="event-card row-start" to={`/eventDetails/${Event._id}`}>
            <img src="/img/img-prueba2.jpg" alt="" className="image-event"/>
            <div className="description-event">

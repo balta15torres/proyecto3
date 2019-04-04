@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
 router.get("/getDataUser",(req,res,next) =>{
   
 
-  console.log("eoooo")
+  //console.log("eoooo")
   res.status(200).json(req.user)
 })
 
@@ -24,7 +24,7 @@ router.post('/getEditUser',uploadCloud.single('photo'),(req,res,next)=>{
   const imageUrl = req.file.secure_url
   const username = req.body.username
   const email = req.body.email
-  console.log(req.body)
+  //console.log(req.body)
   if (username === "" || email === "") {
     res.status(400).json({ message: 'Provide username and password' })
     return;
@@ -40,7 +40,7 @@ router.post('/getEditUser',uploadCloud.single('photo'),(req,res,next)=>{
 
 router.post('/getDataE',(req,res,next) => {
 
-  console.log(req.body)
+  //console.log(req.body)
 
   const {location,center, data, hour, participants, comments} = req.body
   
@@ -56,7 +56,7 @@ router.post('/getDataE',(req,res,next) => {
 
   newEvent.save()
   .then((event) => {
-    console.log(event)
+    //console.log(event)
     Centers.findOneAndUpdate({title:center}, {$push:{events:event._id}}, {new:true}).then((e) => {
       console.log(e)
       res.status(200).json(newEvent);
@@ -68,8 +68,11 @@ router.post('/getDataE',(req,res,next) => {
   })
 })
 
-router.get('/getOneEvent/:id', (req,res)=> { Event.findById(req.params.id)
-  .then(data => res.json(data))
+router.get('/getOneEvent/:id', (req,res)=> { Event.findById(req.params.id).populate('idParticipants')
+  .then(data => {
+    console.log(data)
+    res.json(data)
+  })
   .catch(err => console.log(err))
 
 })
@@ -86,12 +89,23 @@ router.get('/removeEvent/:id',(req,res) => {
   .catch(err => console.log(err))
 })
 
+router.get ('/addUserEvent/:id',(req,res) => {
+  console.log(req.params);
+ Event.findByIdAndUpdate(req.params.id,{$push:{idParticipants :req.user._id}}, {new:true}).populate('idParticipants')
+ .then(event=>{
+   console.log("hola")
+   console.log(event)
+  res.json(event);
+ }) 
+ .catch(err => console.log(err))
+})
+
 
 router.get('/getAllCenters', (req, res) => {
   Centers.find()
   .populate("events")
   .then(centers => {
-    console.log(centers)
+    //console.log(centers)
     res.json(centers)
   })
 });

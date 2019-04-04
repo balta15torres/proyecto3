@@ -16,7 +16,9 @@ export default class CreatEvent extends Component {
                 data: '',
                 hour: '',
                 participants: '',
-                comments: ""
+                comments: "",
+                email:'',
+                tlf:''
             }
         }
         //console.log(this.state)
@@ -35,8 +37,10 @@ export default class CreatEvent extends Component {
         const hour         = this.state.event.hour
         const participants = this.state.event.participants
         const comments     = this.state.event.comments
+        const email        = this.state.event.email
+        const tlf          = this.state.event.tlf
 
-        this.service.getDataEvent(location, center,data, hour, participants,comments)
+        this.service.getDataEvent(location, center,data, hour, participants,comments,email,tlf)
             .then(res => {
                 this.setState({
                     event: {
@@ -45,7 +49,9 @@ export default class CreatEvent extends Component {
                         data: '',
                         hour: '',
                         participants: '',
-                        comments:''
+                        comments:'',
+                        email:'',
+                        tlf:''
                     },
                 }, () => {
                     
@@ -76,7 +82,7 @@ export default class CreatEvent extends Component {
     getEvent = () => {
         this.service.getDataEvent()
             .then(res => {
-                const { listCenter,location, center,data, hour, participants, comments } = res
+                const { listCenter,location, center,data, hour, participants, comments,email,tlf } = res
 
                 this.setState({
                     listCenter,
@@ -85,7 +91,9 @@ export default class CreatEvent extends Component {
                     data,
                     hour,
                     participants,
-                    comments
+                    comments,
+                    email,
+                    tlf
 
                 })
 
@@ -106,7 +114,7 @@ export default class CreatEvent extends Component {
                 <NavBottom />
                 <NavTop />
                 </div>
-                <h2 className="title">NUEVO EVENTO</h2>
+                <h2 className="title"> EVENTO</h2>
                 <form onSubmit={this.handleSubmit}>
 
                     <div className="form-group">
@@ -161,6 +169,14 @@ export default class CreatEvent extends Component {
                     
                     <div className="form-group">
                         <input type="string" className="form-control" name="comments" placeholder="Comentarios" value={this.state.comments} onChange={e => this.handleChange(e)} />
+                    </div>
+
+                    <div className="form-group">
+                        <input type="email" className="form-control" name="email" placeholder="@email" value={this.state.email} onChange={e => this.handleChange(e)} />
+                    </div>
+
+                    <div className="form-group">
+                        <input type="number" className="form-control" name="tlf" placeholder="telefono de contacto" value={this.state.tlf} onChange={e => this.handleChange(e)} />
                     </div>
 
                     <Button variant="primary" className="-destacado" type="submit">Submit</Button>

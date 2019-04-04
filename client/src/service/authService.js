@@ -98,6 +98,18 @@ export default class authService {
         })
         return pro
     }
+
+    addUserEvent = idUser => {
+        const pro = this.service.get(`addUserEvent/${idUser}`,{withCredentials: true})
+        .then (res=> {
+            console.log(res.event)
+            return res.data
+        })
+        .catch(err => {
+            console.log(err)
+        })
+        return pro
+    }
     
     getEvents = () => {
 
