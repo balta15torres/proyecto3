@@ -73,7 +73,7 @@ export default class EventDetails extends Component {
                     <div className="userName">
                         <p className="title">Participants</p>
                         <p>{this.state.event.participants}</p>
-                        <div>{this.state.event.idParticipants.map(user=><p><strong>username:</strong>{user.username} <br></br><strong>email:</strong>{user.email}</p>)}</div>
+                        <div>{this.state.event.idParticipants.map(user => <p><strong>username:</strong>{user.username} <br></br><strong>email:</strong>{user.email} </p>)}</div>
                     </div>
                     <div className="userName">
                         <p className="title">Comments</p>
