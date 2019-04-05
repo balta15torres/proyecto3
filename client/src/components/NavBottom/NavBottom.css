@@ -22,3 +22,7 @@
 a{
     color: #282c34;
 }
+.addEvent{
+    max-height:32px;
+    height:32px;
+}

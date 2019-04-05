@@ -1,10 +1,10 @@
-
+require('dotenv').config();
 const mongoose = require("mongoose");
 const Center = require("../models/Centers");
 const axios = require("axios");
 
 mongoose
-  .connect('mongodb://localhost/server', { CenterNewUrlParser: true })
+  .connect(process.env.DBURL, { CenterNewUrlParser: true })
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })

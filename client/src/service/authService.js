@@ -35,6 +35,7 @@ export default class authService {
     }
 
     logout = () => {
+        window.location.assign('/')
         return this.service.post('logout', {})
             .then(res => res.data)
     }
@@ -66,9 +67,9 @@ export default class authService {
     //     .then(res => res.data)
     // }
 
-    getDataEvent = (location,center,data,hour,participants,comments) => {
+    getDataEvent = (location,center,data,hour,participants,comments,email,tlf) => {
         
-        return this.service.post('getDataE',{location,center,data,hour,participants,comments})
+        return this.service.post('getDataE',{location,center,data,hour,participants,comments,email,tlf})
         .then (res => res.data)
             
             //console.log(res.data)

@@ -40,7 +40,8 @@ class App extends Component {
             
             <Route exact path='/'       render={() => {return(
               <div className="home-intro column-center">
-              <p>¿Estas registrado? <Link to='/login' className="nav-element">Conectate</Link></p> 
+               <h1 className="-logo">ME3T_<br/>_SPORT</h1>
+              <p>¿Estas registrado? <Link  to='/login' className="nav-element">Conectate</Link></p> 
               <Link to='/signup' className="nav-element btn -destacado">Registrarse</Link>
               </div>
             )}}/>

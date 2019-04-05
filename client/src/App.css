@@ -11,8 +11,15 @@ p{
  
 
 }
-a{
+.nav-element{
   color: #fd9152;
+}
+.nav-logout{
+  color: #fd9152;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  
 }
 
 .container{
@@ -34,6 +41,14 @@ a{
     margin-bottom: 40px;
    
 
+}
+.-logo{
+  position: fixed;
+  top: 100px;
+  font-family: 'Montserrat Subrayada', sans-serif;
+  color: #ffffff;
+
+  
 }
 .title:before{
   content: '';
@@ -146,7 +161,7 @@ a{
 
 /* LOGIN */
 .logo{
-  border: 1px solid white;
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -229,6 +244,13 @@ form{
   outline: none;
   border-radius: 10px;
 }
+ input[name="participants"]{
+  background: url(/img/user.png);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background-size: 22px;
+    padding-left: 40px;
+}
  input[name="username"]{
   background: url(/img/user.png);
     background-repeat: no-repeat;
@@ -250,7 +272,57 @@ input[name="password"]{
     background-size: 22px;
     padding-left: 40px;
 }
-
+select[name="location"]{
+  background: url(/img/ubicacion.png);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background-size: 22px;
+    padding-left: 40px;
+}
+input[name="hour"]{
+  background: url(/img/reloj.png);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background-size: 22px;
+    padding-left: 40px;
+}
+input[name="tlf"]{
+  background: url(/img/telefono.png);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background-size: 22px;
+    padding-left: 40px;
+}
+input[name="data"]{
+  background: url(/img/calendario.png);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background-size: 22px;
+    padding-left: 40px;
+}
+select[name="center"]{
+  background: url(/img/campo.png);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background-size: 22px;
+    padding-left: 40px;
+}
+input[name="comments"]{
+  background: url(/img/comentario.png);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background-size: 22px;
+    padding-left: 40px;
+}
+.form-control.-fecha,
+.form-control.-hora{
+  width:45%
+}
+.form-group.-middle{
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+}
 /* HOME */
 .container.-home{
   padding: 0;
@@ -302,8 +374,16 @@ input[name="password"]{
   background-position: right;
   background-size: 20px;
 }
-.image-event {
+.img-event{
   max-width: 95px;
+    height: 115px;
+    background: url('/img/img-prueba2.jpg');
+    width: 100%;
+    background-size:cover;
+   
+}
+.img-event.-full{
+  max-width:100%;
 }
 .participant{
   position: relative;
@@ -340,10 +420,35 @@ input[name="password"]{
   width: 100%;
   max-height: 195px;
 }
-
+.description-profile .title{
+  font-size: 18px;
+  text-align: left;
+  color: #fdd852;
+  font-weight: lighter;
+}
+.description-profile .title:before{
+display: none;
+}
+.description-profile p,
+.description-profile .userName{
+  text-align:left;
+  margin-bottom:10px;
+}
+.description-profile .userName{
+ 
+}
 /* MAPA */
 
 .desc-map{
   color:black;
   font-size: 10px;
+ 
+}
+.verDetalle{
+  color: #6dbb34;
+  font-weight: bold;
+  padding: 7px;
+  font-size: 11px;
+  text-decoration: underline;
+  margin: 0
 }

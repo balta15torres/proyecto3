@@ -47,7 +47,7 @@ export default class Signup extends Component {
   }
   handleChangeIMG = (e) => {
     const { name, files, value } = e.target;
-    this.setState({ "photo": files, [name]:value }, () => {
+    this.setState({ "photo": files, [name]: value }, () => {
       console.log(this.state)
     });
   }
@@ -55,35 +55,35 @@ export default class Signup extends Component {
   render() {
     return (
       <div className="container column-center">
-      {/* <p>
+        {/* <p>
          ¿Estas registrado? 
          <Link to='/login' className="nav-element">
          Conectate</Link>
       </p> */}
-      <p className="title">REGISTRATE</p>
-      <div className="signup">
-      <Form  onSubmit={this.handleFormSubmit}>
-         <Form.Group controlId="formBasicEmail">
-            
-            <Form.Control type="username" name="username" placeholder="Enter username" value={this.state.username} onChange={e =>
-            this.handleChange(e)} />
-         
-            <Form.Control type="email" name="email" placeholder="Enter email" value={this.state.email} onChange={e =>
-            this.handleChange(e)} />
-            
-         </Form.Group>
-         <Form.Group controlId="formBasicPassword">
-            
-            <Form.Control type="password" name="password" placeholder="Password" value={this.state.password} onChange={e =>
-            this.handleChange(e)} />
-         </Form.Group>
-         <div className="form-group">
-           
-            <input className="form-control -file" type="file" name="imageUrl" placeholder="image" value={this.state.imageUrl} onChange={e => this.handleChangeIMG(e)} />
-         </div>
-         <Button className="-destacado" variant="primary" type="submit">Submit</Button>
-      </Form></div>
-   </div>
+        <p className="title">REGISTRATE</p>
+        <div className="signup">
+          <Form onSubmit={this.handleFormSubmit}>
+            <Form.Group controlId="formBasicEmail">
+
+              <Form.Control type="username" name="username" placeholder="Enter username" value={this.state.username} onChange={e =>
+                this.handleChange(e)} />
+
+              <Form.Control type="email" name="email" placeholder="Enter email" value={this.state.email} onChange={e =>
+                this.handleChange(e)} />
+
+            </Form.Group>
+            <Form.Group controlId="formBasicPassword">
+
+              <Form.Control type="password" name="password" placeholder="Password" value={this.state.password} onChange={e =>
+                this.handleChange(e)} />
+            </Form.Group>
+            <div className="form-group">
+
+              <input className="form-control -file" type="file" name="imageUrl" placeholder="image" value={this.state.imageUrl} onChange={e => this.handleChangeIMG(e)} />
+            </div>
+            <Button className="-destacado" variant="primary" type="submit">Submit</Button>
+          </Form></div>
+      </div>
     )
   }
 }

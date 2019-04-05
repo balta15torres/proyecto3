@@ -42,26 +42,26 @@ export default class Login extends Component {
 
       <div className="container column-center">
         <div className="logo">
-          <p>LOGO</p></div>
+        <h1 className="-logo">ME3T_<br/>_SPORT</h1></div>
         <Form onSubmit={this.handleFormSubmit}>
           <Form.Group controlId="formBasicEmail">
 
             <Form.Control type="email" name="email" placeholder="Enter email" value={this.state.email} onChange={e => this.handleChange(e)} />
-          
+
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
 
             <Form.Control type="password" name="password" placeholder="Password" value={this.state.password} onChange={e => this.handleChange(e)} />
-          
+
           </Form.Group>
 
           <Button className="-destacado" type="submit">Submit</Button>
-        
+
         </Form>
 
         <p>¿Aún no estás registrado? </p>
-        <Link to='/signup' className="nav-element "><u>Registrarse</u> </Link>
+        <Link to='/signup' className="nav-element ">Registrarse</Link>
 
       </div>
 

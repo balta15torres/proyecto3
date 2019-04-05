@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 
 import AuthService from '../service/authService'
 import NavBottom from './NavBottom/NavBottom'
-import NavTop from './NavTop/NavTop'
 import Button from 'react-bootstrap/Button'
 
 export default class CreatEvent extends Component {
@@ -10,15 +9,15 @@ export default class CreatEvent extends Component {
         super(props)
         this.state = {
             event: {
-                listCenter:undefined,
+                listCenter: undefined,
                 location: '',
-                center:[],
+                center: [],
                 data: '',
                 hour: '',
                 participants: '',
                 comments: "",
-                email:'',
-                tlf:''
+                email: '',
+                
             }
         }
         //console.log(this.state)
@@ -30,7 +29,7 @@ export default class CreatEvent extends Component {
     handleSubmit = e => {
         e.preventDefault()
 
-        console.log(this.state)
+        // console.log(this.state)
         const location     = this.state.event.location
         const center       = this.state.event.center
         const data         = this.state.event.data
@@ -40,49 +39,49 @@ export default class CreatEvent extends Component {
         const email        = this.state.event.email
         const tlf          = this.state.event.tlf
 
-        this.service.getDataEvent(location, center,data, hour, participants,comments,email,tlf)
+        this.service.getDataEvent(location, center, data, hour, participants, comments, email, tlf)
             .then(res => {
                 this.setState({
                     event: {
                         location: '',
-                        center:'',
+                        center: '',
                         data: '',
                         hour: '',
                         participants: '',
-                        comments:'',
-                        email:'',
-                        tlf:''
+                        comments: '',
+                        email: '',
+                        tlf: ''
                     },
                 }, () => {
-                    
+
                     window.location.assign('eventList')
                 })
-                
+
                 //this.service = new Event()
                 this.props.setUser(res.data)
             })
             .catch(err => err)
-            
-        }
+
+    }
 
     handleChange = (e) => {
         const { name, value } = e.target
 
         //this.setState({...this.state.event, [name]: value})
-        if(name == "location"){
+        if (name == "location") {
             this.service.getCenter(value)
-            .then(centros => {
-                this.setState({event : { ...this.state.event ,[name]: value, listCenter:centros}})
-            })
-        } else {   
-            this.setState({ event: {...this.state.event ,[name]: value }});
+                .then(centros => {
+                    this.setState({ event: { ...this.state.event, [name]: value, listCenter: centros } })
+                })
+        } else {
+            this.setState({ event: { ...this.state.event, [name]: value } });
         }
     }
 
     getEvent = () => {
         this.service.getDataEvent()
             .then(res => {
-                const { listCenter,location, center,data, hour, participants, comments,email,tlf } = res
+                const { listCenter, location, center, data, hour, participants, comments, email} = res
 
                 this.setState({
                     listCenter,
@@ -92,8 +91,8 @@ export default class CreatEvent extends Component {
                     hour,
                     participants,
                     comments,
-                    email,
-                    tlf
+                    email
+                    
 
                 })
 
@@ -101,26 +100,26 @@ export default class CreatEvent extends Component {
 
             })
             .catch(err => console.log(err))
-            
+
     }
 
-    
+
     render() {
         //console.log(this.state.event.center)
         return (
-            
+
             <div className="container column-center">
                 <div>
-                <NavBottom />
-                <NavTop />
+                    <NavBottom />
+                    
                 </div>
-                <h2 className="title"> EVENTO</h2>
+                <h2 className="title">Nuevo evento</h2>
                 <form onSubmit={this.handleSubmit}>
 
                     <div className="form-group">
 
                         <select type="options" className="form-control" name="location" value={this.state.location} onChange={e => this.handleChange(e)}>
-                            <option value="" disabled selected >¿distrito?</option>
+                            <option value="" disabled selected >Selecciona un distrito</option>
                             <option value='ARGANZUELA'>ARGANZUELA</option>
                             <option value='BARAJAS'>BARAJAS</option>
                             <option value='CARABANCHEL'>CARABANCHEL</option>
@@ -148,27 +147,25 @@ export default class CreatEvent extends Component {
                     <div className="form-group">
 
                         <select type="options" className="form-control" name="center" value={this.state.event.listCenter || ""} onChange={e => this.handleChange(e)}>
-                            { this.state.event.listCenter!== undefined && this.state.event.listCenter.map((centro, index) => <option key={index} value={centro.title}>{centro.title}</option>)}
-                            <option>Selecciona tu Centro Deportivo</option>
+                            {this.state.event.listCenter !== undefined && this.state.event.listCenter.map((centro, index) => <option key={index} value={centro.title}>{centro.title}</option>)}
+                            <option>Selecciona tu centro deportivo</option>
                         </select>
                     </div>
 
-                    <div className="form-group">
+                    <div className="form-group -middle">
 
-                        <input type="date" className="form-control" name="data" placeholder="Fecha" value={this.state.data} onChange={e => this.handleChange(e)} />
+                        <input type="date" className="form-control -fecha" name="data" placeholder="Fecha" value={this.state.data} onChange={e => this.handleChange(e)}/>
+                        <input type="time" className="form-control -hora" name="hour" placeholder="Hora" value={this.state.hour} onChange={e => this.handleChange(e)} />
+                    </div>
+
+                   
+
+                    <div className="form-group">
+                        <input type="number" className="form-control" name="participants" placeholder="Nº de participantes" value={this.state.participants} onChange={e => this.handleChange(e)} />
                     </div>
 
                     <div className="form-group">
-
-                        <input type="time" className="form-control" name="hour" placeholder="Hora" value={this.state.hour} onChange={e => this.handleChange(e)} />
-                    </div>
-
-                    <div className="form-group">
-                        <input type="number" className="form-control" name="participants" placeholder="Numero de participantes" value={this.state.participants} onChange={e => this.handleChange(e)} />
-                    </div>
-                    
-                    <div className="form-group">
-                        <input type="string" className="form-control" name="comments" placeholder="Comentarios" value={this.state.comments} onChange={e => this.handleChange(e)} />
+                        <input type="text" className="form-control" name="comments" placeholder="Añade tu comentario" value={this.state.comments} onChange={e => this.handleChange(e)} />
                     </div>
 
                     <div className="form-group">
@@ -176,13 +173,13 @@ export default class CreatEvent extends Component {
                     </div>
 
                     <div className="form-group">
-                        <input type="number" className="form-control" name="tlf" placeholder="telefono de contacto" value={this.state.tlf} onChange={e => this.handleChange(e)} />
+                        <input type="number" className="form-control" name="tlf" placeholder="tlf de contacto" value={this.state.tlf} onChange={e => this.handleChange(e)} />
                     </div>
 
-                    <Button variant="primary" className="-destacado" type="submit">Submit</Button>
+                    <Button variant="primary" className="-destacado" type="submit">Crear evento</Button>
 
                 </form>
-                
+
 
 
             </div>

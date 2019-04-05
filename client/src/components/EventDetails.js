@@ -9,8 +9,9 @@ export default class EventDetails extends Component {
         super(props)
 
         this.state = {
-            event: undefined
-           
+            event: undefined,
+
+
         }
 
         this.service = new AuthService()
@@ -32,63 +33,75 @@ export default class EventDetails extends Component {
     }
 
     addUserEvento(props) {
-        
-        this.service.addUserEvent(this.props.match.params.id)
-        .then(res => this.setState ({event:res}))
 
-        // window.location.assign('/EventDetails')
-        
+        this.service.addUserEvent(this.props.match.params.id)
+            .then(res => this.setState({ event: res }))
+
+        window.location.assign('/EventList')
+
     }
 
 
 
     render() {
-        if(this.state.event){
-            console.log(this.state.event.idParticipants[0])
-        return (
-            <div>
-                <button onClick={() => this.removeEvento(this.state.event.id)}>Eliminar</button>
-                
-                <button onClick={() => this.addUserEvento(this.state.event.id)}>inscribirte</button>
-                
-                <img src="/img/img-prueba2.jpg" alt="" className="event-image-detail" />
+        if (this.state.event) {
+            const participantsInscribed = this.state.event.participants - this.state.event.idParticipants.length
 
-                <div className="description-profile">
-                    <div className="userName">
-                        <p className="title">Location</p>
-                        <p>{this.state.event.location}</p>
+            return (
+                <div>
+                    {/* <button onClick={() => this.removeEvento(this.state.event.id)}>Eliminar</button> */}
+
+                  
+
+                    <div className="img-event -full"></div>
+                    <button className="btn -destacado" onClick={() => this.addUserEvento(this.state.event.id)}>Inscribete al evento</button>
+                    <div className="description-profile container">
+                        <div className="userName">
+                            <span className="title">Distrito : </span>
+                            <span>{this.state.event.location}</span>
+                        </div>
+                        <div className="userName">
+                            <span className="title">Centro deportivo : </span>
+                            <span>{this.state.event.center}</span>
+                        </div>
+                        <div className="userName">
+                            <span className="title">Fecha : </span>
+                            <span>{this.state.event.data}</span>
+                        </div>
+                        <div className="userName">
+                            <span className="title">Hora : </span>
+                            <span>{this.state.event.hour}</span>
+                        </div>
+                        <div className="userName">
+                            <span className="title">Nº de participantes : </span>
+                            <span>{participantsInscribed}</span>
+                            
+                        </div>
+                        <div className="userName">
+                            <span className="title">Participantes : </span>
+                            <div>{this.state.event.idParticipants.map(user => <span> {user.email} </span>)}</div>
+                        </div>
+                        <div className="userName">
+                            <span className="title">Descripción del evento : </span>
+                            <span>{this.state.event.comments}</span>
+
+                        </div>
+                        <div className="userName">
+                            <span className="title">Teléfono de contacto :</span>
+                            <span>{this.state.event.tlf}</span>
+
+                        </div>
+                        
                     </div>
-                    <div className="userName">
-                        <p className="title">centro</p>
-                        <p>{this.state.event.center}</p>
-                    </div>
-                    <div className="userName">
-                        <p className="title">Data</p>
-                        <p>{this.state.event.data}</p>
-                    </div>
-                    <div className="userName">
-                        <p className="title">Hour</p>
-                        <p>{this.state.event.hour}</p>
-                    </div>
-                    <div className="userName">
-                        <p className="title">Participants</p>
-                        <p>{this.state.event.participants}</p>
-                        <div>{this.state.event.idParticipants.map(user => <p><strong>username:</strong>{user.username} <br></br><strong>email:</strong>{user.email} </p>)}</div>
-                    </div>
-                    <div className="userName">
-                        <p className="title">Comments</p>
-                        <p>{this.state.event.comments}</p>
-                    </div>
+
+
+                    <NavBottom />
+
                 </div>
 
 
-                <NavBottom />
 
-            </div>
-
-
-
-        )
-        } else return(<div>0</div>)
+            )
+        } else return (<div></div>)
     }
 }

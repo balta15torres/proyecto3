@@ -40,24 +40,26 @@ router.post('/getEditUser',uploadCloud.single('photo'),(req,res,next)=>{
 
 router.post('/getDataE',(req,res,next) => {
 
-  //console.log(req.body)
+  console.log(req.body)
 
-  const {location,center, data, hour, participants, comments} = req.body
-  
+  const {location,center, data, hour, participants, comments, tlf} = req.body
+  console.log(tlf);
   const newEvent = new Event({
     location,
     center,
     data,
     hour,
     participants,
-    comments
+    comments,
+    tlf
   });
   
 
   newEvent.save()
   .then((event) => {
     //console.log(event)
-    Centers.findOneAndUpdate({title:center}, {$push:{events:event._id}}, {new:true}).then((e) => {
+    Centers.findOneAndUpdate({title:center}, {$push:{events:event._id}}, {new:true})
+    .then((e) => {
       console.log(e)
       res.status(200).json(newEvent);
     }) 
